@@ -6,6 +6,7 @@ import { TaskListDetailComponent } from './task-list-detail/task-list-detail.com
 import { TaskListsTasksComponent } from './task-lists-tasks/task-lists-tasks.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { BaseComponent } from './base/base.component';
+import {AuthComponent} from './auth/auth.component';
 
 const routes: Routes = [
   {path: '', component: BaseComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'task_lists/:id', component: TaskListDetailComponent},
   {path: 'task_lists/:id/tasks', component: TaskListsTasksComponent},
   {path: 'tasks/:id', component: TaskDetailComponent},
+  {path: 'login', component: AuthComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {MainService} from './main.service';
 import {HttpClient} from '@angular/common/http';
-import {ITaskList, ITaskShort, ITaskLong, ITaskCreated, ITaskD} from '../models';
+import {ITaskList, ITaskShort, ITaskLong, ITaskCreated , IUserRequest, IUserResponse} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ProviderService extends MainService {
   }
 
   getTaskLists(): Promise<ITaskList[]> {
-    return this.get('http://127.0.0.1:8000/api/task_lists/', {});
+    return this.get('http://127.0.0.1:8000/api/task_lists', {});
   }
 
   getTaskListDetail(id: number): Promise<ITaskList> {
@@ -54,7 +54,7 @@ export class ProviderService extends MainService {
     });
   }
 
-  updateTask(task: any): Promise<ITaskD> {
+  updateTask(task: any): Promise<ITaskShort> {
     return this.put(`http://localhost:8000/api/tasks/${task.id}/`, {
       name: task.name,
       due_on: task.due_on,
@@ -64,6 +64,13 @@ export class ProviderService extends MainService {
 
   deleteTask(id: number): Promise<any> {
     return this.delet(`http://localhost:8000/api/tasks/${id}/`, {});
+  }
+
+  auth(usernameAuth: string, passwordAuth: string): Promise<IUserResponse> {
+    return this.post('http://localhost:8000/api/login', {
+      username: usernameAuth,
+      password: passwordAuth
+    });
   }
 
 }
